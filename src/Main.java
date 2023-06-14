@@ -9,7 +9,7 @@ public class Main {
 
         System.out.print("Nhap so luong: ");
         Scanner scanner = new Scanner(System.in);
-        int n=0;
+        int n = 0;
         try {
             n = scanner.nextInt();
         } catch (InputMismatchException e) {
@@ -19,8 +19,8 @@ public class Main {
             return;
         }
 
-        int tmp=0;
-        for (int i=0; i<n; i++) {
+        int tmp = 0;
+        for (int i = 0; i < n; i++) {
             System.out.print("Nhap so: ");
             try {
                 tmp = scanner.nextInt();
@@ -29,21 +29,21 @@ public class Main {
                 break;
             }
 
-            if (tmp%fizz == 0 && tmp%buzz == 0) {
+            if (tmp % fizz == 0 && tmp % buzz == 0) {
                 System.out.println("FizzBuzz.");
                 continue;
             }
-            if (tmp%fizz == 0) {
+            if (tmp % fizz == 0) {
                 System.out.println("Fizz.");
                 continue;
             }
-            if (tmp%buzz == 0) {
+            if (tmp % buzz == 0) {
                 System.out.println("Buzz.");
                 continue;
             }
 
             System.out.println("Not Fizz or Buzz at all!");
-            
+
         }
 
         scanner.close();
