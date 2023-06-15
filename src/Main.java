@@ -5,54 +5,58 @@ import java.util.Scanner;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        final int fizz = 3;
-        final int buzz = 5;
 
-        System.out.print("Nhap so luong: ");
-        Scanner scanner = new Scanner(System.in);
-        int inputQuantity = 0;
+        int fizz = readNumber("Enter the fizz number: ");
 
-        try {
-            inputQuantity = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Input error!");
-            return;
-        }
+        int buzz = readNumber("Enter the buzz number: ");
+
+        int inputQuantity = readNumber("Enter the quantity number: ");
+
         if (inputQuantity <= 0) {
-            System.out.println("So luong khong du!");
+            System.out.println("Quantity number must be greater than 0!");
             return;
         }
 
-        int tmp = 0;
+        int tmp;
         for (int i = 0; i < inputQuantity; i++) {
-            System.out.print("Nhap so: ");
-            try {
-                tmp = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Input error!");
-                break;
-            }
+            tmp = readNumber("Enter a number: ");
 
-            fFizzBuzz(fizz, buzz, tmp);
+            System.out.println(handlerInput(fizz, buzz, tmp));
 
         }
-
-        scanner.close();
     }
 
-    public static void fFizzBuzz(final int fizz, final int buzz, int inputNumber) {
-        boolean isFizzBuzz = false;
+    public static String handlerInput(int fizz, int buzz, int inputNumber) {
+        String result = "";
+
         if (inputNumber % fizz == 0) {
-            System.out.print("Fizz");
-            isFizzBuzz = true;
+            result += "Fizz";
         }
+
         if (inputNumber % buzz == 0) {
-            System.out.print("Buzz");
-            isFizzBuzz = true;
+            result += "Buzz";
         }
-        if (!isFizzBuzz) {
-            System.out.print(inputNumber);
+
+        if (result.equals("")) {
+            result = String.valueOf(inputNumber);
         }
-        System.out.println();
+
+        return result;
+    }
+
+    public static int readNumber(String intro) {
+        Scanner scanner = new Scanner(System.in);
+        int tmp;
+
+        System.out.print(intro);
+
+        try {
+            tmp = scanner.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Input error!");
+            return 1;
+        }
+
+        return tmp;
     }
 }
