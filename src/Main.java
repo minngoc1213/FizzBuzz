@@ -41,17 +41,17 @@ public class Main {
     }
 
     public static void fFizzBuzz(final int fizz, final int buzz, int inputNumber) {
-        int flag = 0;
+        boolean isFizzBuzz = false;
         if (inputNumber % fizz == 0) {
             System.out.print("Fizz");
-            flag++;
+            isFizzBuzz = true;
         }
         if (inputNumber % buzz == 0) {
             System.out.print("Buzz");
-            flag++;
+            isFizzBuzz = true;
         }
-        if (flag == 0) {
-            System.out.print("Not Fizz or Buzz at all!");
+        if (!isFizzBuzz) {
+            System.out.print(inputNumber);
         }
         System.out.println();
     }
