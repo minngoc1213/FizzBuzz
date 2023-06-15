@@ -5,22 +5,26 @@ import java.util.Scanner;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        final int fizz = 3, buzz = 5;
+        final int fizz = 3;
+        final int buzz = 5;
 
         System.out.print("Nhap so luong: ");
         Scanner scanner = new Scanner(System.in);
-        int n = 0;
+        int inputQuantity = 0;
+
         try {
-            n = scanner.nextInt();
+            inputQuantity = scanner.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Input error!");
+            return;
         }
-        if (n <= 0) {
+        if (inputQuantity <= 0) {
+            System.out.println("So luong khong du!");
             return;
         }
 
         int tmp = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < inputQuantity; i++) {
             System.out.print("Nhap so: ");
             try {
                 tmp = scanner.nextInt();
@@ -29,24 +33,26 @@ public class Main {
                 break;
             }
 
-            if (tmp % fizz == 0 && tmp % buzz == 0) {
-                System.out.println("FizzBuzz.");
-                continue;
-            }
-            if (tmp % fizz == 0) {
-                System.out.println("Fizz.");
-                continue;
-            }
-            if (tmp % buzz == 0) {
-                System.out.println("Buzz.");
-                continue;
-            }
-
-            System.out.println("Not Fizz or Buzz at all!");
+            fFizzBuzz(fizz, buzz, tmp);
 
         }
 
         scanner.close();
-        return;
+    }
+
+    public static void fFizzBuzz(final int fizz, final int buzz, int inputNumber) {
+        int flag = 0;
+        if (inputNumber % fizz == 0) {
+            System.out.print("Fizz");
+            flag++;
+        }
+        if (inputNumber % buzz == 0) {
+            System.out.print("Buzz");
+            flag++;
+        }
+        if (flag == 0) {
+            System.out.print("Not Fizz or Buzz at all!");
+        }
+        System.out.println();
     }
 }
