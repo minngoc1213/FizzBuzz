@@ -1,58 +1,65 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        final int fizz = 3;
-        final int buzz = 5;
 
-        System.out.print("Nhap so luong: ");
-        Scanner scanner = new Scanner(System.in);
-        int inputQuantity = 0;
+        int fizz = readNumber("Enter the fizz number: ");
 
-        try {
-            inputQuantity = scanner.nextInt();
-        } catch (InputMismatchException e) {
-            System.out.println("Input error!");
-            return;
-        }
-        if (inputQuantity <= 0) {
-            System.out.println("So luong khong du!");
-            return;
-        }
+        int buzz = readNumber("Enter the buzz number: ");
 
-        int tmp = 0;
+        int inputQuantity = readNumber("Enter the quantity number: ");
+
+        int inputNumber;
         for (int i = 0; i < inputQuantity; i++) {
-            System.out.print("Nhap so: ");
-            try {
-                tmp = scanner.nextInt();
-            } catch (InputMismatchException e) {
-                System.out.println("Input error!");
-                break;
-            }
+            inputNumber = readNumber("Enter a number: ");
 
-            fFizzBuzz(fizz, buzz, tmp);
+            System.out.println(handleInput(fizz, buzz, inputNumber));
 
         }
-
-        scanner.close();
     }
 
-    public static void fFizzBuzz(final int fizz, final int buzz, int inputNumber) {
-        boolean isFizzBuzz = false;
+    public static String handleInput(int fizz, int buzz, int inputNumber) {
+        StringBuilder result = new StringBuilder();
+
         if (inputNumber % fizz == 0) {
-            System.out.print("Fizz");
-            isFizzBuzz = true;
+            result.append("Fizz");
         }
+
         if (inputNumber % buzz == 0) {
-            System.out.print("Buzz");
-            isFizzBuzz = true;
+            result.append("Buzz");
         }
-        if (!isFizzBuzz) {
-            System.out.print(inputNumber);
+
+        if (result.toString().equals("")) {
+            result.append(inputNumber);
         }
-        System.out.println();
+
+        return result.toString();
+    }
+
+    public static int readNumber(String intro) {
+        int inputNumber;
+        System.out.print(intro);
+
+        do {
+            inputNumber = handleException();
+            if (inputNumber < 1) {
+                System.out.print("Please enter an integer number greater than 0: ");
+            }
+        } while (inputNumber < 1);
+
+        return inputNumber;
+    }
+
+    public static int handleException() {
+        Scanner scanner = new Scanner(System.in);
+        int inputNumber;
+
+        try {
+            inputNumber = scanner.nextInt();
+        } catch (Exception e) {
+            return 0;
+        }
+        return inputNumber;
     }
 }
